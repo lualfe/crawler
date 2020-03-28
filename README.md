@@ -6,7 +6,7 @@
 - [Git](https://git-scm.com/downloads)
 - [Insomnia](https://insomnia.rest/)
 
-1. Enter in the project root and run the application:
+1. Enter in the project root in the terminal and run the command:
 ````
 go run main.go
 ````
@@ -15,4 +15,4 @@ go run main.go
 
 3. Run the \[GET\]Crawl endpoint to get the results. 
 
-4. To run all the tests from all packages, run ````go test ./...```` or to run tests from a package, enter in a package directory and run ````go test````.
+4. To run all the tests from all packages, use the command ````go test ./...```` or to run tests from a package, enter in a package directory and type ````go test````.
