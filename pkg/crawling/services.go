@@ -10,7 +10,7 @@ import (
 	"github.com/labstack/gommon/log"
 )
 
-// Service is the rest accessible interface
+// Service is the Rest accessible interface
 type Service interface {
 	Crawl(*Crawler) (*ProfessionalPlan, error)
 }
@@ -22,7 +22,7 @@ func NewService() Service {
 	return &service{}
 }
 
-// Crawl crawls the url and retrieves Professional Plan information
+// Crawl crawls the crawler url and to get Professional Plan information
 func (s *service) Crawl(crawler *Crawler) (*ProfessionalPlan, error) {
 	if crawler == nil {
 		return nil, echo.NewHTTPError(http.StatusBadRequest, "an empty crawler has been received as an argument")

@@ -1,6 +1,6 @@
 package crawling
 
-// ProfessionalPlan represents information returned from the crawler abou professional plan
+// ProfessionalPlan represents informations about professional plan
 type ProfessionalPlan struct {
 	Charge         string `json:"charge"`
 	TransferTax    string `json:"transfer_tax"`
