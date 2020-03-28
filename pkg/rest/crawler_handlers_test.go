@@ -14,7 +14,7 @@ import (
 	"github.com/stretchr/testify/suite"
 )
 
-var expectedCrawlerJSONResponse = &crawling.ProPlanInfo{
+var expectedCrawlerHandlerJSONResponse = &crawling.ProfessionalPlan{
 	Charge:         "R$ 5,00 por boleto pago.",
 	TransferTax:    "R$ 7,00",
 	MonthlyPayment: "R$ 15,00\n*pagando R$45,00/trimestre",
@@ -50,9 +50,9 @@ func (s *CrawlerHandlersSuite) TestCrawl() {
 	f = crawl(s.c)
 	if assert.NoError(s.T(), f(ctx), "unexpected error coming from crawler") {
 		assert.Equal(s.T(), http.StatusOK, rec.Code)
-		gotCrawlerResponse := &crawling.ProPlanInfo{}
-		err := json.NewDecoder(rec.Body).Decode(&gotCrawlerResponse)
+		gotCrawlerHandlerResponse := &crawling.ProfessionalPlan{}
+		err := json.NewDecoder(rec.Body).Decode(&gotCrawlerHandlerResponse)
 		assert.Nil(s.T(), err)
-		assert.Equal(s.T(), expectedCrawlerJSONResponse, gotCrawlerResponse)
+		assert.Equal(s.T(), expectedCrawlerHandlerJSONResponse, gotCrawlerHandlerResponse)
 	}
 }

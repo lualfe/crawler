@@ -3,6 +3,7 @@ package crawling
 import (
 	"context"
 	"net/http"
+	"strings"
 
 	"github.com/chromedp/chromedp"
 	"github.com/labstack/echo"
@@ -11,7 +12,7 @@ import (
 
 // Service is the rest accessible interface
 type Service interface {
-	Crawl(*Crawler) (*ProPlanInfo, error)
+	Crawl(*Crawler) (*ProfessionalPlan, error)
 }
 
 type service struct{}
@@ -22,8 +23,14 @@ func NewService() Service {
 }
 
 // Crawl crawls the url and retrieves Professional Plan information
-func (s *service) Crawl(crawler *Crawler) (*ProPlanInfo, error) {
-	pInfo := &ProPlanInfo{}
+func (s *service) Crawl(crawler *Crawler) (*ProfessionalPlan, error) {
+	if crawler == nil {
+		return nil, echo.NewHTTPError(http.StatusBadRequest, "an empty crawler has been received as an argument")
+	}
+	if !strings.Contains(crawler.URL, "https://www.smartmei.com.br/") {
+		return nil, echo.NewHTTPError(http.StatusBadRequest, "crawler url is not supported")
+	}
+	pInfo := &ProfessionalPlan{}
 	ctx, cancel := chromedp.NewContext(context.Background(), chromedp.WithLogf(log.Printf))
 	defer cancel()
 	log.Print("Crawler started")
