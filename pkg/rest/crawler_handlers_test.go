@@ -38,14 +38,14 @@ func TestCrawlerHandlersInit(t *testing.T) {
 
 func (s *CrawlerHandlersSuite) TestCrawl() {
 	rec := httptest.NewRecorder()
-	req := httptest.NewRequest(http.MethodGet, "/api/v1/crawl", nil)
+	req := httptest.NewRequest(http.MethodGet, "/api/v1/professional_plan", nil)
 	ctx := s.e.NewContext(req, rec)
 	f := crawl(s.c)
 	require.Error(s.T(), f(ctx), "params were not passed an an error is expected")
 
 	p := url.Values{}
 	p.Set("url", "https://www.smartmei.com.br/")
-	req = httptest.NewRequest(http.MethodGet, "/api/v1/crawl?"+p.Encode(), nil)
+	req = httptest.NewRequest(http.MethodGet, "/api/v1/professional_plan?"+p.Encode(), nil)
 	ctx = s.e.NewContext(req, rec)
 	f = crawl(s.c)
 	if assert.NoError(s.T(), f(ctx), "unexpected error coming from crawler") {

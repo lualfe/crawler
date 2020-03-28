@@ -9,7 +9,7 @@ import (
 
 // CrawlerHandlers represents crawler routes
 func CrawlerHandlers(e *echo.Echo, cs crawling.Service) {
-	e.GET("/api/v1/crawl", crawl(cs))
+	e.GET("/api/v1/professional_plan", crawl(cs))
 }
 
 func crawl(cs crawling.Service) func(c echo.Context) error {
